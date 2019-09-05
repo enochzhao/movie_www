@@ -216,6 +216,30 @@ router.post('/sendEmail', function (req, res, next) {
 });
 //用户显示站内信接口，其中receive为1时是发送的内容，为2时是收到的内容
 router.post('/showEmail', function (req, res, next) {
+    if (!req.body.token) {
+        res.json({status: 1, message: "用户登录状态错误"})
+    }
+    if (!req.body.user_id) {
+        res.json({status: 1, message: "用户登录状态出错"})
+    }
+    if (!req.body.receive) {
+        res.json({status: 1, message: "参数出错"})
+    }
+    if (req.body.token == getMD5Password(req.body.user_id)) {
+        if (req.body.receive == 1) {
+            //发送的站内信
+            mail.findByFromUserId(req.body.user_id, function (err, sendMail) {
+                res.json({status: 0, message: "获取成功", data: sendMail})
+            })
+        } else {
+            //收到的站内信
+            mail.findByToUserId(req.body.user_id, function (err, receiveMail) {
+                res.json({status: 0, message: '获取成功', data: receiveMail})
+            })
+        }
+    } else {
+        res.json({status: 1, message: "用户登录错误"})
+    }
 });
 //获取MD5值
 function getMD5Password(id) {
