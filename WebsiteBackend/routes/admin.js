@@ -63,3 +63,13 @@ router.post('/movieAdd', function (req, res, next) {
         res.json({status: 1, message: check.message});
     }
 });
+
+//获取md5值
+function getMD5Password(id) {
+    var md5 = crypto.createHash('md5');
+    var token_before = id + init_token
+    // res.json(userSave[0]._id)
+    return md5.update(token_before).digest('hex')
+}
+
+module.exports = router;

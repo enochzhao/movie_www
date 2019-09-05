@@ -101,22 +101,6 @@ router.post('/support', function (req, res, next) {
         })
     })
 });
-//电影下载接口
-router.post('/download', function (req, res, next) {
-    if (!req.body.movie_id) {
-        res.json({status: 1, message: "电影id传递失败"})
-    }else{
-        movie.findById(req.body.movie_id, function (err, supportMovie) {
-            movie.update({_id: req.body.movie_id}, {movieNumDownload: supportMovie.movieNumDownload + 1}, function (err) {
-                if (err) {
-                    res.json({status: 1, message: "下载失败", data: err})
-                }
-                res.json({status: 0, message: '下载成功', data: supportMovie.movieDownload})
-            })
-        })
-    }
-
-});
 //用户找回密码接口
 router.post('/findPassword', function (req, res, next) {
     if (req.body.repassword) {
