@@ -62,6 +62,30 @@ router.post('/register', function (req, res, next) {
 });
 //用户提交评论接口
 router.post('/postComment', function (req, res, next) {
+    if (!req.body.username) {
+        var username = "匿名用户"
+    }
+    if (!req.body.movie_id) {
+        res.json({status: 1, message: "电影id为空"})
+    }
+    if (!req.body.context) {
+        res.json({status: 1, message: "评论内容为空"})
+    }
+
+    var saveComment = new comment({
+        movie_id: req.body.movie_id,
+        username: req.body.username ? req.body.username : username,
+        context: req.body.context,
+        check: 0
+    })
+    saveComment.save(function (err) {
+        if(err){
+            res.json({status: 1, message: err})
+        }else{
+            res.json({status: 0, message: '评论成功'})
+        }
+
+    })
 });
 //用户点赞接口
 router.post('/support', function (req, res, next) {
