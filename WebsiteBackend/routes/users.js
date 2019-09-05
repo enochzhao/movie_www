@@ -89,6 +89,17 @@ router.post('/postComment', function (req, res, next) {
 });
 //用户点赞接口
 router.post('/support', function (req, res, next) {
+    if (!req.body.movie_id) {
+        res.json({status: 1, message: "电影id传递失败"})
+    }
+    movie.findById(req.body.movie_id, function (err, supportMovie) {
+        movie.update({_id: req.body.movie_id}, {movieNumSuppose: supportMovie.movieNumSuppose + 1}, function (err) {
+            if (err) {
+                res.json({status: 1, message: "点赞失败", data: err})
+            }
+            res.json({status: 0, message: '点赞成功'})
+        })
+    })
 });
 //用户找回密码接口
 router.post('/findPassword', function (req, res, next) {
