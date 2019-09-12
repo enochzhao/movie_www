@@ -17,7 +17,7 @@ export default new Router({
     {
       path: '/',
       name: 'IndexPage',
-      component: resolve => require(['../pages/Index'], resolve),
+      component: resolve => require(['@/pages/Index'], resolve),
       meta: {
         title: 'home'
       }
