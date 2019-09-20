@@ -1,10 +1,10 @@
-<templaten lang="html">
+<template lang="html">
   <div class="footer">
     <div class="footer">
       <p>vue.js实例</p>
     </div>
   </div>
-</templaten>
+</template>
 
 <script>
     export default {
