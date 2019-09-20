@@ -43,7 +43,7 @@ import MoviesList from "../components/MoviesList";
 import NewsList from "../components/NewsList";
 import CommonFooter from "../components/CommonFooter";
     export default {
-        name: "Index",
+        name: "index",
         data () {
             return {}
         },

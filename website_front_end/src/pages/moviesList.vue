@@ -1,51 +1,56 @@
 <template lang="html">
+  <!--此页面需要-->
   <div class="container">
-    <div class="test">
-      <p>测试文字</p>
-    </div>
     <div>
-      <!-- header组件 -->
-      <movie-index-header></movie-index-header>
+      <movie-index-header ></movie-index-header>   <!--  展示引入的header组件 -->
     </div>
     <div class="contentMain">
       <div>
         <div class="contentLeft">
           <ul class="cont-ul">
-            <!-- 电影列表 -->
-            <movies-list></movies-list>
+            <movies-list v-for="item in movieItems" :key="item._id" :id="item._id" :movieName="item.movieName" :movieTime="item.movieTime"></movies-list><!--引入MovieList-->
           </ul>
         </div>
       </div>
     </div>
     <div>
-      <!-- footer组件 -->
-      <common-footer></common-footer>
+      <common-footer></common-footer>  <!--  展示引入的footer组件 -->
     </div>
   </div>
 </template>
-
 <script>
-import MovieIndexHeader from "../components/MovieIndexHeader";
-import MoviesList from "../components/MoviesList";
-import CommonFooter from "../components/CommonFooter";
+    import MovieIndexHeader from '../components/MovieIndexHeader'
+    import CommonFooter from '../components/commonFooter'
+    import MoviesList from '../components/MoviesList'
 
-export default {
-    name: "moviesList",
-    data () {
-      return {}
-    },
-    components: {
-        MovieIndexHeader,
-        CommonFooter,
-        MoviesList,
-    },
-    created() {
+    export default {
+        name: 'movieList',
+        data () {
+            return {
+                movieItems:[]
+            }
+        },
+        components: {
+            MovieIndexHeader,
+            CommonFooter,
+            MoviesList
+        },
+
+//  这里用于获取数据
+        created () {
+//    获取所有电影
+            this.$http.get('http://localhost:3000/movie/list').then((data) => {
+                this.movieItems = data.body.data;
+                console.log( data.body)
+            })
+        },
+        methods:{
+        }
     }
-}
 </script>
 
 <style lang="css" scoped>
-  .container{
+  .container {
     width: 100%;
     margin: 0 auto;
   }

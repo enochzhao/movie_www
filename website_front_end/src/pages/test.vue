@@ -20,7 +20,7 @@
     </div>
     <div class="test">
       <p>
-        这是测试页面
+        这是测试页面,<br>无任何渲染效果，说明所有组件和页面尽都正常<br>因为……<br>无问题的都屏蔽了……
       </p>
     </div>
   </div>
@@ -41,7 +41,7 @@ export default {
     },
     components: {
         //MovieIndexHeader,
-        CommonFooter,
+        //CommonFooter,
         //NewsList,
         //MoviesList,
         //IndexHeaderPic,
