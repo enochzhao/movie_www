@@ -1,5 +1,8 @@
 <template lang="html">
   <div class="container">
+    <div class="test">
+      <p>测试文字</p>
+    </div>
     <div>
       <!-- header组件 -->
       <movie-index-header></movie-index-header>
@@ -22,16 +25,21 @@
 </template>
 
 <script>
-import MovieIndexHeader from "../components/MovieIndexHeader"
-import MoviesList from "../components/MoviesList"
-import CommonFooter from "../components/CommonFooter"
+import MovieIndexHeader from "../components/MovieIndexHeader";
+import MoviesList from "../components/MoviesList";
+import CommonFooter from "../components/CommonFooter";
 
 export default {
     name: "moviesList",
+    data () {
+      return {}
+    },
     components: {
         MovieIndexHeader,
         CommonFooter,
-        MoviesList
+        MoviesList,
+    },
+    created() {
     }
 }
 </script>

@@ -1,7 +1,7 @@
 <template lang="html">
     <div class="movieList">
       <div>
-        <router-link :to="www.enochzhao.com" class="goods-list-link">假设为电影-以诺君的方舟</router-link>
+        <router-link to="www.enochzhao.com" class="goods-list-link">假设为电影-以诺君的方舟</router-link>
       </div>
     </div>
 </template>
